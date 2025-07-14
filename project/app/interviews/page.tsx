@@ -536,12 +536,16 @@ export default function InterviewsPage() {
         <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto">
           {selectedInterview && (
             <>
-              <DialogHeader>
-                <DialogTitle className="text-xl">{selectedInterview.jobTitle} - {selectedInterview.company}</DialogTitle>
-                <DialogDescription>
+              <DialogTitle className="sr-only">Interview Details</DialogTitle>
+              <DialogDescription className="sr-only">
+                {selectedInterview.jobTitle} - {selectedInterview.company} • {selectedInterview.type} • {selectedInterview.date} at {selectedInterview.time}
+              </DialogDescription>
+              <div className="flex flex-col space-y-1.5 text-center sm:text-left">
+                <h2 className="text-xl font-semibold leading-none tracking-tight">{selectedInterview.jobTitle} - {selectedInterview.company}</h2>
+                <p className="text-sm text-muted-foreground">
                   {selectedInterview.type} • {selectedInterview.date} at {selectedInterview.time}
-                </DialogDescription>
-              </DialogHeader>
+                </p>
+              </div>
               <div className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
@@ -597,12 +601,16 @@ export default function InterviewsPage() {
         <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
           {selectedInterview && (
             <>
-              <DialogHeader>
-                <DialogTitle>Interview Preparation</DialogTitle>
-                <DialogDescription>
+              <DialogTitle className="sr-only">Interview Preparation</DialogTitle>
+              <DialogDescription className="sr-only">
+                {selectedInterview.jobTitle} at {selectedInterview.company}
+              </DialogDescription>
+              <div className="flex flex-col space-y-1.5 text-center sm:text-left">
+                <h2 className="text-lg font-semibold leading-none tracking-tight">Interview Preparation</h2>
+                <p className="text-sm text-muted-foreground">
                   {selectedInterview.jobTitle} at {selectedInterview.company}
-                </DialogDescription>
-              </DialogHeader>
+                </p>
+              </div>
               <div className="space-y-6">
                 <div>
                   <h3 className="text-lg font-semibold mb-3">Preparation Checklist</h3>

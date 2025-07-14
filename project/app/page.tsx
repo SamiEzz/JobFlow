@@ -251,10 +251,14 @@ export default function Dashboard() {
         <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
           {viewingJob && (
             <>
-              <DialogHeader className="space-y-4">
+              <DialogTitle className="sr-only">Job Details</DialogTitle>
+              <DialogDescription className="sr-only">
+                View detailed information about {viewingJob?.title} at {viewingJob?.company}
+              </DialogDescription>
+              <div className="flex flex-col space-y-1.5 text-center sm:text-left space-y-4">
                 <div className="flex items-start justify-between">
                   <div className="space-y-2">
-                    <DialogTitle className="text-2xl font-bold">{viewingJob.title}</DialogTitle>
+                    <h2 className="text-2xl font-bold">{viewingJob.title}</h2>
                     <div className="flex items-center space-x-3">
                       <Badge variant="outline" className="text-sm">{viewingJob.company}</Badge>
                       <Badge className={getStatusColor(viewingJob.status)}>
@@ -291,7 +295,7 @@ export default function Dashboard() {
                     <span className="text-sm">{viewingJob.type}</span>
                   </div>
                 </div>
-              </DialogHeader>
+              </div>
 
               <div className="space-y-6">
                 <div>
@@ -366,12 +370,16 @@ export default function Dashboard() {
       {/* Application Dialog */}
       <Dialog open={applicationDialog} onOpenChange={setApplicationDialog}>
         <DialogContent className="sm:max-w-[600px]">
-          <DialogHeader>
-            <DialogTitle>Quick Apply</DialogTitle>
-            <DialogDescription>
+          <DialogTitle className="sr-only">Quick Apply</DialogTitle>
+          <DialogDescription className="sr-only">
+            Apply to {selectedJob?.title} at {selectedJob?.company}
+          </DialogDescription>
+          <div className="flex flex-col space-y-1.5 text-center sm:text-left">
+            <h2 className="text-lg font-semibold leading-none tracking-tight">Quick Apply</h2>
+            <p className="text-sm text-muted-foreground">
               Apply to {selectedJob?.title} at {selectedJob?.company}
-            </DialogDescription>
-          </DialogHeader>
+            </p>
+          </div>
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>

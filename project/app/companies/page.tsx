@@ -572,7 +572,11 @@ export default function CompaniesPage() {
         <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
           {selectedCompany && (
             <>
-              <DialogHeader className="space-y-4">
+              <DialogTitle className="sr-only">Company Details</DialogTitle>
+              <DialogDescription className="sr-only">
+                View detailed information about {selectedCompany?.name}
+              </DialogDescription>
+              <div className="flex flex-col space-y-1.5 text-center sm:text-left space-y-4">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center space-x-4">
                     <img 
@@ -600,7 +604,7 @@ export default function CompaniesPage() {
                     Website
                   </Button>
                 </div>
-              </DialogHeader>
+              </div>
 
               <div className="space-y-6">
                 <div>
@@ -716,12 +720,16 @@ export default function CompaniesPage() {
       {/* Connect Company Modal */}
       <Dialog open={connectDialog} onOpenChange={setConnectDialog}>
         <DialogContent className="sm:max-w-[500px]">
-          <DialogHeader>
-            <DialogTitle>Connect to {selectedCompany?.name}</DialogTitle>
-            <DialogDescription>
+          <DialogTitle className="sr-only">Connect to Company</DialogTitle>
+          <DialogDescription className="sr-only">
+            Connect to {selectedCompany?.name} to start receiving job offers and updates from this company.
+          </DialogDescription>
+          <div className="flex flex-col space-y-1.5 text-center sm:text-left">
+            <h2 className="text-lg font-semibold leading-none tracking-tight">Connect to {selectedCompany?.name}</h2>
+            <p className="text-sm text-muted-foreground">
               Connect to start receiving job offers and updates from this company.
-            </DialogDescription>
-          </DialogHeader>
+            </p>
+          </div>
           <div className="space-y-4">
             <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
               <h4 className="font-medium text-blue-900 dark:text-blue-300 mb-2">What happens when you connect?</h4>
