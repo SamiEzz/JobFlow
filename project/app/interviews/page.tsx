@@ -294,7 +294,7 @@ export default function InterviewsPage() {
   };
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 lg:space-y-8">
       {/* Page Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -303,21 +303,24 @@ export default function InterviewsPage() {
             Manage your upcoming interviews and track your progress.
           </p>
         </div>
-        <Button>
+        <Button className="hidden sm:flex">
           <Plus className="w-4 h-4 mr-2" />
           Schedule Interview
+        </Button>
+        <Button size="icon" className="sm:hidden">
+          <Plus className="w-4 h-4" />
         </Button>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
         {stats.map((stat) => (
           <Card key={stat.title} className="hover:shadow-md transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 sm:p-4 lg:p-6">
               <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
               <stat.icon className={`h-4 w-4 ${stat.color}`} />
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-3 sm:p-4 lg:p-6 pt-0">
               <div className="text-2xl font-bold">{stat.value}</div>
             </CardContent>
           </Card>
@@ -326,7 +329,7 @@ export default function InterviewsPage() {
 
       {/* Filters and Search */}
       <div className="space-y-4">
-        <div className="flex flex-col lg:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
             <Input
@@ -336,9 +339,9 @@ export default function InterviewsPage() {
               className="pl-10"
             />
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Select value={filterStatus} onValueChange={setFilterStatus}>
-              <SelectTrigger className="w-[150px]">
+              <SelectTrigger className="w-full sm:w-[150px]">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
@@ -350,7 +353,7 @@ export default function InterviewsPage() {
               </SelectContent>
             </Select>
             <Select value={filterType} onValueChange={setFilterType}>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-full sm:w-[180px]">
                 <SelectValue placeholder="Interview Type" />
               </SelectTrigger>
               <SelectContent>
@@ -366,7 +369,7 @@ export default function InterviewsPage() {
 
         {/* Tabs */}
         <Tabs value={selectedTab} onValueChange={setSelectedTab}>
-          <TabsList>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4">
             <TabsTrigger value="upcoming">Upcoming ({getUpcomingInterviews()})</TabsTrigger>
             <TabsTrigger value="this-week">This Week ({getThisWeekInterviews()})</TabsTrigger>
             <TabsTrigger value="completed">Completed ({getInterviewsByStatus('completed')})</TabsTrigger>
@@ -395,7 +398,7 @@ export default function InterviewsPage() {
                       <span className="ml-1">{interview.type}</span>
                     </Badge>
                   </div>
-                  <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm text-gray-600 dark:text-gray-400">
                     <div className="flex items-center">
                       <Calendar className="w-4 h-4 mr-1" />
                       {interview.date} at {interview.time}
@@ -414,7 +417,7 @@ export default function InterviewsPage() {
                     </div>
                   </div>
                 </div>
-                <div className="flex space-x-2">
+                <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
                   {interview.status === 'scheduled' && (
                     <Button size="sm" onClick={() => joinMeeting(interview)}>
                       {interview.format === 'video' && <Video className="w-4 h-4 mr-2" />}
@@ -435,7 +438,7 @@ export default function InterviewsPage() {
             <CardContent>
               <div className="space-y-4">
                 {/* Interview Details */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div>
                     <p className="text-sm font-medium text-gray-900 dark:text-white">Interviewer</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">{interview.interviewer}</p>
@@ -487,7 +490,7 @@ export default function InterviewsPage() {
                 )}
 
                 {/* Action Buttons */}
-                <div className="flex space-x-2 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-200 dark:border-gray-700">
                   <Button variant="outline" size="sm" onClick={() => handleViewInterview(interview)}>
                     <ExternalLink className="w-4 h-4 mr-2" />
                     View Details

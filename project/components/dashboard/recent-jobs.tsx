@@ -62,7 +62,7 @@ export function RecentJobs({ jobs, onViewJob, onApply }: RecentJobsProps) {
       <CardContent>
         <div className="space-y-4">
           {jobs.slice(0, 5).map((job) => (
-            <div key={job.id} className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <div key={job.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors space-y-3 sm:space-y-0">
               <div className="flex-1">
                 <div className="flex items-center space-x-2 mb-2">
                   <h3 className="font-medium text-gray-900 dark:text-white">{job.title}</h3>
@@ -72,7 +72,7 @@ export function RecentJobs({ jobs, onViewJob, onApply }: RecentJobsProps) {
                     <span className="ml-1 capitalize">{job.status}</span>
                   </Badge>
                 </div>
-                <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm text-gray-600 dark:text-gray-400">
                   <div className="flex items-center">
                     <MapPin className="w-4 h-4 mr-1" />
                     {job.location}
@@ -87,7 +87,7 @@ export function RecentJobs({ jobs, onViewJob, onApply }: RecentJobsProps) {
                   </div>
                 </div>
               </div>
-              <div className="flex space-x-2">
+              <div className="flex space-x-2 w-full sm:w-auto">
                 <Button variant="outline" size="sm" onClick={() => onViewJob(job)}>
                   <Eye className="w-4 h-4 mr-2" />
                   View

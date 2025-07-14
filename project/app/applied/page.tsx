@@ -151,7 +151,7 @@ export default function AppliedJobs() {
   ];
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 lg:space-y-8">
       {/* Page Header */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Applied Jobs</h1>
@@ -161,14 +161,14 @@ export default function AppliedJobs() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
         {stats.map((stat) => (
           <Card key={stat.title} className="hover:shadow-md transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 sm:p-4 lg:p-6">
               <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
               <stat.icon className={`h-4 w-4 ${stat.color}`} />
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-3 sm:p-4 lg:p-6 pt-0">
               <div className="text-2xl font-bold">{stat.value}</div>
             </CardContent>
           </Card>
@@ -187,7 +187,7 @@ export default function AppliedJobs() {
           />
         </div>
         <Select value={filterStatus} onValueChange={setFilterStatus}>
-          <SelectTrigger className="w-[200px]">
+          <SelectTrigger className="w-full sm:w-[200px]">
             <Filter className="w-4 h-4 mr-2" />
             <SelectValue placeholder="Filter by status" />
           </SelectTrigger>
@@ -204,7 +204,7 @@ export default function AppliedJobs() {
 
       {/* Status Tabs */}
       <Tabs value={selectedTab} onValueChange={setSelectedTab}>
-        <TabsList className="grid w-full grid-cols-6">
+        <TabsList className="grid w-full grid-cols-3 sm:grid-cols-6">
           <TabsTrigger value="all">All ({jobs.length})</TabsTrigger>
           <TabsTrigger value="under_review">Review ({getJobsByStatus('under_review')})</TabsTrigger>
           <TabsTrigger value="phone_screen">Phone ({getJobsByStatus('phone_screen')})</TabsTrigger>
@@ -229,7 +229,7 @@ export default function AppliedJobs() {
                           <span className="ml-1 capitalize">{job.applicationStatus}</span>
                         </Badge>
                       </div>
-                      <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm text-gray-600 dark:text-gray-400">
                         <div className="flex items-center">
                           <MapPin className="w-4 h-4 mr-1" />
                           {job.location}
@@ -256,7 +256,7 @@ export default function AppliedJobs() {
                 <CardContent>
                   <div className="space-y-4">
                     {/* Application Details */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                       <div>
                         <p className="text-sm font-medium text-gray-900 dark:text-white">Application ID</p>
                         <p className="text-sm text-gray-600 dark:text-gray-400">{job.applicationId}</p>
@@ -282,7 +282,7 @@ export default function AppliedJobs() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex space-x-2">
+                    <div className="flex flex-wrap gap-2">
                       <Button variant="outline" size="sm">
                         <Eye className="w-4 h-4 mr-2" />
                         View Details

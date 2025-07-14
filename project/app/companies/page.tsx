@@ -357,7 +357,7 @@ export default function CompaniesPage() {
   };
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 lg:space-y-8">
       {/* Page Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -366,21 +366,24 @@ export default function CompaniesPage() {
             Manage your company connections and discover new opportunities.
           </p>
         </div>
-        <Button>
+        <Button className="hidden sm:flex">
           <Plus className="w-4 h-4 mr-2" />
           Add Company
+        </Button>
+        <Button size="icon" className="sm:hidden">
+          <Plus className="w-4 h-4" />
         </Button>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
         {stats.map((stat) => (
           <Card key={stat.title} className="hover:shadow-md transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 sm:p-4 lg:p-6">
               <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
               <stat.icon className={`h-4 w-4 ${stat.color}`} />
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-3 sm:p-4 lg:p-6 pt-0">
               <div className="text-2xl font-bold">{stat.value}</div>
             </CardContent>
           </Card>
@@ -389,7 +392,7 @@ export default function CompaniesPage() {
 
       {/* Filters and Search */}
       <div className="space-y-4">
-        <div className="flex flex-col lg:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
             <Input
@@ -399,9 +402,9 @@ export default function CompaniesPage() {
               className="pl-10"
             />
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Select value={filterIndustry} onValueChange={setFilterIndustry}>
-              <SelectTrigger className="w-[150px]">
+              <SelectTrigger className="w-full sm:w-[150px]">
                 <SelectValue placeholder="Industry" />
               </SelectTrigger>
               <SelectContent>
@@ -415,7 +418,7 @@ export default function CompaniesPage() {
               </SelectContent>
             </Select>
             <Select value={filterStatus} onValueChange={setFilterStatus}>
-              <SelectTrigger className="w-[130px]">
+              <SelectTrigger className="w-full sm:w-[130px]">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
@@ -427,7 +430,7 @@ export default function CompaniesPage() {
               </SelectContent>
             </Select>
             <Select value={filterSize} onValueChange={setFilterSize}>
-              <SelectTrigger className="w-[120px]">
+              <SelectTrigger className="w-full sm:w-[120px]">
                 <SelectValue placeholder="Size" />
               </SelectTrigger>
               <SelectContent>
@@ -442,7 +445,7 @@ export default function CompaniesPage() {
 
         {/* Tabs */}
         <Tabs value={selectedTab} onValueChange={setSelectedTab}>
-          <TabsList>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4">
             <TabsTrigger value="all">All ({companies.length})</TabsTrigger>
             <TabsTrigger value="connected">Connected ({getConnectedCompanies()})</TabsTrigger>
             <TabsTrigger value="not_connected">Available ({companies.filter(c => !c.connected).length})</TabsTrigger>
@@ -452,7 +455,7 @@ export default function CompaniesPage() {
       </div>
 
       {/* Companies Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
         {filteredCompanies.map((company) => (
           <Card key={company.id} className="hover:shadow-md transition-shadow">
             <CardHeader>
@@ -480,14 +483,14 @@ export default function CompaniesPage() {
                   {company.description}
                 </p>
 
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div className="flex items-center space-x-2">
                     <Users className="w-4 h-4 text-gray-500" />
                     <span>{company.size}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <MapPin className="w-4 h-4 text-gray-500" />
-                    <span>{company.location}</span>
+                    <span className="truncate">{company.location}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Briefcase className="w-4 h-4 text-gray-500" />
@@ -531,7 +534,7 @@ export default function CompaniesPage() {
                   )}
                 </div>
 
-                <div className="flex space-x-2 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 pt-4 border-t border-gray-200 dark:border-gray-700">
                   <Button variant="outline" size="sm" onClick={() => handleViewCompany(company)} className="flex-1">
                     <Eye className="w-4 h-4 mr-2" />
                     View

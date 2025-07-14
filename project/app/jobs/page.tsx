@@ -319,7 +319,7 @@ export default function JobsPage() {
   ];
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 lg:space-y-8">
       {/* Page Header */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Job Offers</h1>
@@ -329,14 +329,14 @@ export default function JobsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
         {stats.map((stat) => (
           <Card key={stat.title} className="hover:shadow-md transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 sm:p-4 lg:p-6">
               <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
               <stat.icon className={`h-4 w-4 ${stat.color}`} />
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-3 sm:p-4 lg:p-6 pt-0">
               <div className="text-2xl font-bold">{stat.value}</div>
             </CardContent>
           </Card>
@@ -345,7 +345,7 @@ export default function JobsPage() {
 
       {/* Filters and Search */}
       <div className="space-y-4">
-        <div className="flex flex-col lg:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
             <Input
@@ -355,9 +355,9 @@ export default function JobsPage() {
               className="pl-10"
             />
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Select value={filterLocation} onValueChange={setFilterLocation}>
-              <SelectTrigger className="w-[150px]">
+              <SelectTrigger className="w-full sm:w-[150px]">
                 <SelectValue placeholder="Location" />
               </SelectTrigger>
               <SelectContent>
@@ -369,7 +369,7 @@ export default function JobsPage() {
               </SelectContent>
             </Select>
             <Select value={filterType} onValueChange={setFilterType}>
-              <SelectTrigger className="w-[130px]">
+              <SelectTrigger className="w-full sm:w-[130px]">
                 <SelectValue placeholder="Job Type" />
               </SelectTrigger>
               <SelectContent>
@@ -380,7 +380,7 @@ export default function JobsPage() {
               </SelectContent>
             </Select>
             <Select value={filterRemote} onValueChange={setFilterRemote}>
-              <SelectTrigger className="w-[120px]">
+              <SelectTrigger className="w-full sm:w-[120px]">
                 <SelectValue placeholder="Remote" />
               </SelectTrigger>
               <SelectContent>
@@ -390,7 +390,7 @@ export default function JobsPage() {
               </SelectContent>
             </Select>
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-[120px]">
+              <SelectTrigger className="w-full sm:w-[120px]">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent>
@@ -404,7 +404,7 @@ export default function JobsPage() {
 
         {/* Tabs */}
         <Tabs value={selectedTab} onValueChange={setSelectedTab}>
-          <TabsList>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4">
             <TabsTrigger value="all">All Jobs ({jobs.length})</TabsTrigger>
             <TabsTrigger value="featured">Featured ({jobs.filter(j => j.featured).length})</TabsTrigger>
             <TabsTrigger value="new">New ({jobs.filter(j => j.status === 'new').length})</TabsTrigger>
@@ -432,7 +432,7 @@ export default function JobsPage() {
                       <span className="ml-1 capitalize">{job.status}</span>
                     </Badge>
                   </div>
-                  <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm text-gray-600 dark:text-gray-400">
                     <div className="flex items-center">
                       <MapPin className="w-4 h-4 mr-1" />
                       {job.location}
@@ -452,7 +452,7 @@ export default function JobsPage() {
                     </div>
                   </div>
                 </div>
-                <div className="flex space-x-2">
+                <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
                   <Button variant="outline" size="sm">
                     <Bookmark className="w-4 h-4" />
                   </Button>
@@ -483,7 +483,7 @@ export default function JobsPage() {
                   <div className="text-sm text-gray-600 dark:text-gray-400">
                     Apply by {job.applicationDeadline}
                   </div>
-                  <div className="flex space-x-2">
+                  <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 w-full sm:w-auto">
                     <Button variant="outline" size="sm" onClick={() => handleViewJob(job)}>
                       <Eye className="w-4 h-4 mr-2" />
                       View Details
